@@ -42,5 +42,3 @@ For Wodpress:
 Playbook launch
 --------------
 In order to start it, you should enter the command ansible-playbook playbook.yml in the terminal (adding -bK and entering the sudo password, if you have not edited /etc/sudoers file)
-
-+++
