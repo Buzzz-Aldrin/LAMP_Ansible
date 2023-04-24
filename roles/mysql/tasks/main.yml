@@ -1,0 +1,54 @@
+- name: Install MYSQL
+  apt: name={{ item }}
+       state=present
+  loop:
+    - mariadb-server
+    - mariadb-client
+    - mariadb-common
+       
+- name: start mysql
+  shell: "service mysql start"
+    
+- name: Copy my.cnf file
+  template:
+    src: my.cnf.j2
+    dest: /root/.my.cnf
+    mode: 0600
+    owner: root
+    group: root
+     
+- name: update mysql root password
+  mysql_user:
+    name: root
+    host_all: yes
+    password: "{{ mysql_root_password }}"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+    check_implicit_admin: yes
+    priv: "*.*:ALL,GRANT"
+    state: present
+    
+- name: Remove all anonymous accounts
+  mysql_user:
+    name: ''
+    host_all: yes
+    state: absent
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+
+- name: Create database for WordPress
+  mysql_db:
+    name: "{{ mysql_db }}"
+    state: present
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+
+- name: Create MySQL user for WordPress
+  mysql_user:
+    name: "{{ mysql_user }}"
+    password: "{{ mysql_password }}"
+    priv: "{{ mysql_db }}.*:ALL"
+    state: present
+    login_user: root
+    login_password: "{{ mysql_root_password }}"

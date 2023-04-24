@@ -1,0 +1,24 @@
+- hosts: all
+  become: true
+
+  roles:
+    - addition
+    - apache
+    - mysql
+    - php
+    - wordpress
+    
+  tasks:
+    
+  - name: ip
+    shell:
+      hostname -I
+    register: ip_name
+    
+  - name: masagge
+    debug: 
+      msg: Success! LAMP has been successfully installed. Please open your browser, type in IP adding /wordpress/ to finish installing wordpress.
+
+  - name: your IP
+    debug:
+      msg: Your IP {{ ip_name.stdout_lines }}

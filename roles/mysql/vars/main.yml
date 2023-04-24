@@ -1,0 +1,4 @@
+mysql_root_password: "qwerty123"
+mysql_db: "wp_db"
+mysql_user: "wp_user"
+mysql_password: "qwerty123"

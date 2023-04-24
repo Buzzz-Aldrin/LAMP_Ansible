@@ -1,0 +1,10 @@
+- name: install PHP
+  apt: name={{ item }}
+       state=latest
+  loop:
+   - php
+   - php-mysql
+   - libapache2-mod-php
+   - php-cli
+   - php-cgi
+   - php-gd

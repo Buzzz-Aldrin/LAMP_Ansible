@@ -1,0 +1,12 @@
+- name: install additions
+  apt: name={{ item }}
+       state=latest
+  loop:
+   - ufw
+   - python3
+   - python3-pip
+   - unzip
+
+- name: install pymysql
+  pip: name=pymysql
+       state=latest

@@ -1,0 +1,6 @@
+[targets]
+target-debian ansible_host=192.168.0.195
+
+
+[targets:vars]
+ansible_user=sadmin

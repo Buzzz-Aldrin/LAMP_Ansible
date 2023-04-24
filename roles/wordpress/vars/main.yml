@@ -1,0 +1,5 @@
+wp_link: "https://wordpress.org/latest.tar.gz"
+http_host: "nasa.com"
+mysql_db: "wp_db"
+mysql_user: "wp_user"
+mysql_password: "qwerty123"
